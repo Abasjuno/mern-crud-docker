@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const employeeRoutre = require("./routes/employeeRoute");
+const cors = require("cors")
 
 const app = express();
 
@@ -17,7 +18,7 @@ const connectWithRetry = () => {
     });
 };
 connectWithRetry();
-
+app.use(cors())
 app.use(express.json());
 
 app.get("/", (req, res) => {
