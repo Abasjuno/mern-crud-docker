@@ -1,16 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const employeeRoutre = require("./routes/employeeRoute");
-const cors = require("cors")
+const cors = require("cors");
 
 const app = express();
 
 const connectWithRetry = () => {
   mongoose
-    .connect(process.env.MONGO_URI, {
-      useNewUrlparser: true,
-      useUnifiedTopology: true,
-    })
+    .connect(
+      "mongodb+srv://abas:abas123@hrm.oinzw.mongodb.net/?retryWrites=true&w=majority",
+      {
+        useNewUrlparser: true,
+        useUnifiedTopology: true,
+      }
+    )
     .then(() => console.log("db connected "))
     .catch((e) => {
       console.log("db connection error", e);
@@ -18,7 +21,7 @@ const connectWithRetry = () => {
     });
 };
 connectWithRetry();
-app.use(cors())
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
