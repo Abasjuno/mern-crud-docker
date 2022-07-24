@@ -3,19 +3,15 @@ const mongoose = require("mongoose");
 const employeeSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: [true,"employee must have a Name"],
   },
-  dateOfBirth: {
-    type: Date,
-    required: true,
-  },
+  dateOfBirth: Date,
   gender: {
     type: String,
-    required: true,
+    required: [true,"please spasify your gender"]
   },
   salary: {
-    type: String,
-    required: true,
+    type: Number,
   },
 },{timestamps:true});
 
